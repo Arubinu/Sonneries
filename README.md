@@ -18,10 +18,10 @@ A la suite de la commande de lancement, vous avez ces options :
 
 ## Sources utilisées
 
-AngularJS : (https://angularjs.org/)
-CryptoJS : (https://code.google.com/p/crypto-js/)
-Audio5JS : (http://zohararad.github.io/audio5js/)
-Ng-Infinite-Scroll : (https://binarymuse.github.io/ngInfiniteScroll/)
+ - AngularJS : (https://angularjs.org/)
+ - CryptoJS : (https://code.google.com/p/crypto-js/)
+ - Audio5JS : (http://zohararad.github.io/audio5js/)
+ - Ng-Infinite-Scroll : (https://binarymuse.github.io/ngInfiniteScroll/)
 
 ## Notes
 
