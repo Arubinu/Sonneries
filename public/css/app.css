@@ -1,0 +1,345 @@
+@charset "UTF-8";
+
+input:focus, button:focus, textarea:focus {
+	outline: none;
+}
+::-webkit-input-placeholder {
+	font-weight: normal !important;
+}
+:-moz-placeholder {
+	font-weight: normal !important;
+}
+::-moz-placeholder {
+	font-weight: normal !important;
+}
+:-ms-input-placeholder {
+	font-weight: normal !important;
+}
+
+body {
+	padding-top: 80px;
+	padding-bottom: 40px;
+	background-color: #eee;
+}
+.hideall > div:not(.noscript) {
+	display: none;
+}
+:not(.hideall) > .noscript {
+	display: none;
+}
+
+.noscript {
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+.noscript > div {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 90%;
+	max-width: 90%;
+	max-height: 90%;
+	transform: translate( -50%,-50% );
+}
+.noscript > div > img {
+	max-width: 90%;
+	max-height: 90%;
+}
+.notice {
+	width: 100%;
+	text-align: center;
+}
+
+/* Footer */
+#footer {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	padding-top: 8px;
+	height: 30px;
+	background: linear-gradient( to bottom, rgba( 221, 221, 221, 0 ) 0%, rgba( 221, 221, 221, 1) 15%, rgba( 221, 221, 221, 1 ) 100% );
+	color: #666;
+	cursor: pointer;
+	z-index: 42;
+}
+
+/* Bootstrap Modal */
+/*
+.modal {
+	display: table !important;
+	margin: auto;
+	width: 600px !important;
+	height: 100%;
+}
+.modal-dialog {
+	display: table-cell;
+	vertical-align: middle;
+}
+*/
+.modal-footer {
+	text-align: center !important;
+}
+
+/* Status bar */
+#status {
+	overflow: hidden;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	padding: 0;
+	height: 50px;
+	background-color: #212c36;
+	border-bottom: 1px #bbb solid;
+	font-size: 30px;
+	color: #fff;
+	z-index: 42;
+}
+#status > div:first-child {
+	position: relative;
+	padding: 2px 0;
+	width: 100%;
+	height: 100%;
+	color: #fff;
+}
+#status > div:first-child .glyphicon {
+	margin: 10px 0;
+	font-size: 25px;
+	color: #fff;
+	cursor: pointer;
+}
+#status > div:first-child > div:first-child {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	width: 50px;
+	height: 100%;
+}
+#status > div:first-child > div:last-child {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	width: 50px;
+	height: 100%;
+	border-left: 1px #555 solid;
+	cursor: pointer;
+}
+#status > div:last-child {
+	padding: 2px 0;
+	width: 100%;
+	height: 100%;
+}
+#status > div:last-child input {
+	float: left;
+	margin: 7px;
+	padding: 2px 8px;
+	width: calc( 100% - 52px );
+	height: 30px;
+	color: #212c36;
+	font-size: 16px;
+	font-weight: bold;
+	border: 0;
+	border-radius: 5px;
+}
+#status > div:last-child .glyphicon {
+	float: right;
+	margin: 6px 6px 0 0;
+	height: 100%;
+	color: #fff;
+	cursor: pointer;
+}
+#categories {
+	overflow: hidden;
+	position: absolute;
+	top: calc( 50px + 1px );
+	left: 0;
+	right: 0;
+	width: 100%;
+	height: 0;
+	color: #000;
+	background-color: #fff;
+	font-size: 18px;
+	transition: .5s;
+}
+#categories > div {
+	padding: 8px;
+	width: 100%;
+	height: 60px;
+	border-bottom: 1px #bbb solid;
+	cursor: pointer;
+}
+#categories > div:hover {
+	background-color: rgba( 0, 0, 0, .05 );
+}
+#categories > div > img {
+	float: left;
+	margin-right: 10px;
+	width: 42px;
+	height: 42px;
+}
+#categories > div .glyphicon {
+	font-size: 100%;
+	color: #bbb;
+}
+#categories > div > .text {
+	float: left;
+}
+#categories > div > .text > div {
+	margin-left: 2px;
+	font-size: 12px;
+	color: #888;
+}
+#categories > div > div:last-child {
+	float: right;
+	margin-left: 10px;
+	padding: 12px;
+	width: 42px;
+	height: 42px;
+}
+
+/* Infinite */
+#infinite {
+	margin: 10px auto 10px;
+	width: calc( 100% - 10px );
+	box-shadow: 0px 1px 5px 0px rgba( 50, 50, 50, .2 );
+	transition: .5s;
+}
+
+/* Design */
+.audio-block {
+	clear: both;
+	position: relative;
+	margin: 0;
+	padding: 5px;
+	width: 100%;
+	height: 70px;
+	background-color: #fff;
+	text-align: center;
+	color: #000;
+	border-bottom: 1px #dde2e4 solid;
+}
+.audio-block > div:first-child {
+	overflow: hidden;
+	float: left;
+	position: relative;
+	margin: 3px 0 0 2px;
+	width: 54px;
+	height: 54px;
+	text-align: center;
+	cursor: pointer;
+}
+.audio-block > div:first-child > img {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	cursor: pointer;
+	z-index: 1;
+}
+.audio-block > div.middle {
+	overflow: hidden;
+	float: left;
+	margin: 0 0 0 10px;
+	padding: 10px 0;
+	width: calc( 100% - 110px );
+	height: 100%;
+	text-align: left;
+}
+.audio-block > div.middle > .text {
+	display: inline-block;
+	overflow: hidden;
+	width: 100%;
+	height: 100%;
+	color: #000;
+	font-size: 14px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.audio-block > div.middle .glyphicon {
+	font-size: 11px;
+}
+.audio-block > div.middle > .text > div {
+	margin: 2px 0 0 2px;
+	color: #888;
+	font-size: 12px;
+}
+.audio-block > .dl {
+	float: right;
+	padding: 17px 0;
+	width: 42px;
+	height: 42px;
+}
+.audio-block .glyphicon {
+	font-size: 22px;
+	color: #bbb;
+}
+.progress {
+	height: 20px;
+	border-radius: 2px;
+}
+.progress-bar-grey {
+	background-color: #626262;
+}
+
+/* Circle progress bar */
+.c100.small {
+	margin: auto;
+	font-size: 54px;
+}
+
+/* ngAnimate */
+.view.ng-enter {
+	transition: .75s;
+	opacity: 0;
+}
+.view.ng-enter.ng-enter-active {
+	opacity: 1;
+}
+
+.view.ng-leave {}
+.view.ng-leave.ng-leave-active {}
+
+.fadeout { /* fadein removed for menu */
+	-webkit-transition: all ease-in-out .5s;
+	-moz-transition: all ease-in-out .5s;
+	-o-transition: all ease-in-out .5s;
+	transition: all ease-in-out .5s;
+	opacity: 1;
+}
+
+.fadein.ng-hide-remove,
+.fadeout.ng-hide-add.ng-hide-add-active {
+	opacity: 0;
+}
+
+.fadeout.ng-hide-add,
+.fadein.ng-hide-remove.ng-hide-remove-active {
+	opacity: 1;
+}
+
+/* Resize */
+.qr {
+	display: none;
+	float: right;
+	padding: 18px 0;
+	width: 42px;
+	height: 42px;
+	cursor: pointer;
+	opacity: .7;
+	transition: opacity .5s ease-in-out;
+}
+.qr:hover {
+	opacity: 1;
+}
+@media screen and ( min-width: 600px ) {
+	.qr {
+		display: block;
+	}
+	.audio-block > div.middle {
+		width: calc( 100% - ( 110px + 42px ) );
+	}
+}

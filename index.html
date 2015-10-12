@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html ng-app="app">
+	<head>
+		<title>Sonneries</title>
+		<meta http-equiv="Expires" content="-1" />
+		<meta http-equiv="Pragma" content="no-cache" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta property="og:url" content="[[ url ]]" />
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content="Sonneries" />
+		<meta property="og:description" content="Téléchargez toute sorte de sonnerie pour votre smartphone ..." />
+		<meta property="og:image" content="[[ url ]]img/icon.png" />
+		<link rel="icon" type="image/png" href="img/favicon.png" sizes="64x64" />
+		<link data-require="bootstrap-css@3.3.5" data-semver="3.3.5" rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/circle.css" />
+		<link rel="stylesheet" type="text/css" href="css/app.css" />
+		<script type="text/javascript" src="js/audio5.min.js"></script>
+		<script data-require="angular.js@*" data-semver="1.4.5" type="text/javascript" src="js/angular.min.js"></script>
+		<script data-require="angular-animate@1.4.5" data-semver="1.4.5" type="text/javascript" src="js/angular-animate.min.js"></script>
+		<script data-require="angular-resource@1.4.5" data-semver="1.4.5" type="text/javascript" src="js/angular-resource.min.js"></script>
+		<script data-require="angular-infinite-scroll@1.2.0" data-semver="1.2.0" type="text/javascript" src="js/angular-infinite-scroll.min.js"></script>
+		<script data-require="ui-bootstrap-tpls@0.13.4" data-semver="0.13.4" type="text/javascript" src="js/ui-bootstrap-tpls.min.js"></script>
+		<script type="text/javascript" src="js/sha1.js"></script>
+		<script type="text/javascript" src="js/app-audio5.js"></script>
+		<script type="text/javascript" src="app.js"></script>
+	</head>
+
+	<body ng-controller="DesignCtrl as design" id="body" class="hideall">
+		<script type="text/ng-template" id="qrcode.html">
+			<div class="modal-header">
+				<h3 class="modal-title">{{ title }}</h3>
+			</div>
+			<div class="modal-body text-center">
+				<img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data={{ qrcode }}" />
+				<br /><br />
+				Scannez ce Qr-code afin de lancer le téléchargement sur votre smartphone ...
+				<br />
+				Pour iPhone, veuillez la télécharger et passer par iTunes !
+			</div>
+			<div class="modal-footer text-center">
+				<button class="btn btn-primary" type="button" ng-click="ok()">Fermer</button>
+			</div>
+		</script>
+		<script type="text/ng-template" id="download.html">
+			<div class="modal-header">
+				<h3 class="modal-title">{{ title }}</h3>
+			</div>
+			<div class="modal-body text-center">
+				<div ng-repeat="type in types" style="margin: 10px 0;">
+					<button class="btn btn-lg btn-success" ng-click="confirm( type.ext )">{{ type.name }}</button>
+				</div>
+			</div>
+			<div class="modal-footer text-center">
+				<button class="btn btn-primary" type="button" ng-click="ok()">Fermer</button>
+			</div>
+		</script>
+
+		<div class="noscript text-center">
+			<div>
+				<img src="img/angular-js.png" />
+				<br />Ce site a besoin de JavaScript pour fonctionner.
+				<br />Veuillez désactiver votre bloqueur s'il vous plaît...
+				<br /><br />Il est possible que le site ait subi une avarie!<br />
+			</div>
+		</div>
+		<nav id="status">
+				<div class="{{ design.menu ? 'fadein': 'fadeout' }} text-center" ng-show="!design.menu">
+					<div class="text-center">
+						<img src="img/favicon.png" style="height: 40px;" />
+					</div>
+					<span>Sonneries</span>
+					<div class="text-center" ng-click="design.menu = true">
+						<span class="glyphicon glyphicon-search"></span>
+					</div>
+				</div>
+				<div class="{{ design.menu ? 'fadeout': 'fadein' }}" ng-show="design.menu">
+					<input type="text" ng-model="design.infinite.search" ng-model-options="{ updateOn: 'default blur', debounce: { default: 500, blur: 0 } }" maxlength="42" placeholder="Thème, artiste, chanson ..." />
+					<span class="glyphicon glyphicon-remove" ng-click="design.menu = false"></span>
+				</div>
+		</nav>
+		<div id="categories" style="height: calc( 60px * {{ design.menu ? design.category.array.id.length : 0 }} );">
+			<div ng-click="design.category.num = $index" ng-repeat="categories in design.category.array.id">
+				<img ng-src="img/cat-{{ categories }}.png" />
+				<div class="text">
+					{{ design.category.array.title[ $index ] }}
+					<div>{{ design.category.array.count[ $index ] }} sonneries</div>
+				</div>
+				<div>
+					<span class="glyphicon glyphicon-{{ ( design.category.num == $index ) ? 'ok' : 'remove' }}"></span>
+				</div>
+			</div>
+		</div>
+		<div class="notice">Genre sélectionné: {{ design.category.get( 'title' ) }}</div>
+		<div class="notice" ng-if="design.infinite.error">Une erreur est survenue, veuillez nous excuser pour le dérangement.</div>
+
+		<div id="infinite" infinite-scroll="design.infinite.nextPage( design.category.get( 'id' ) )" infinite-scroll-disabled="design.infinite.busy" infinite-scroll-distance="0">
+			<div class="audio-block view" ng-repeat="ringtone in design.infinite.items">
+				<div>
+					<div class="c100 small p0">
+						<div class="slice">
+							<div class="bar"></div>
+							<div class="fill"></div>
+						</div>
+					</div>
+					<img src="img/play.png" ng-click="design.toggle( ringtone )" ng-if="design.playing != ringtone.hash" />
+					<img src="img/stop.png" ng-click="design.toggle( ringtone )" ng-if="design.playing == ringtone.hash" />
+				</div>
+				<div id="audio-{{ ringtone.hash }}" class="middle">
+					<div class="text">
+						{{ ringtone.title }}
+						<div>{{ design.category.get( 'title', ringtone.category ) }} <span class="glyphicon glyphicon-arrow-down"></span> {{ ringtone.dl }}</div>
+					</div>
+				</div>
+				<div class="dl" ng-click="design.dl( ringtone );">
+					<span class="glyphicon glyphicon-download-alt"></span>
+				</div>
+				<div class="qr" ng-click="design.qrcode( ringtone )">
+					<img src="img/qrcode.png" />
+				</div>
+			</div>
+		</div>
+
+		<div id="footer" class="text-center" ng-click="scrollTop()">
+			<span class="glyphicon glyphicon-arrow-up"></span>
+			&nbsp;
+			Revenir en haut
+			&nbsp;
+			<span class="glyphicon glyphicon-arrow-up"></span>
+		</div>
+	</body>
+</html>
